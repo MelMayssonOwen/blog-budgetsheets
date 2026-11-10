@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Can You Use &lt;&gt; in SUMIFS?</title>
+<meta name="description" content="Yes, you can use `&lt;&gt;` in SUMIFS, but it means “not equal to,” not “less than or greater than.” Use it to exclude a specific label like Transfer or Paid, and use separate criteria such as `&quot;&gt;=x&quot;` and `&quot;&lt;x&quot;` when you need a range.">
+<link rel="canonical" href="https://budgetsheethub.blog/can-you-use-in-sumifs/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Can You Use &lt;&gt; in SUMIFS?">
+<meta property="og:description" content="Yes, you can use `&lt;&gt;` in SUMIFS, but it means “not equal to,” not “less than or greater than.” Use it to exclude a specific label like Transfer or Paid, and use separate criteria such as `&quot;&gt;=x&quot;` and `&quot;&lt;x&quot;` when you need a range.">
+<meta property="og:url" content="https://budgetsheethub.blog/can-you-use-in-sumifs/">
+<meta property="og:site_name" content="Budget Sheet Hub">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect x='2.5' y='2.5' width='25' height='25' rx='3.5' fill='%231f5c3d' stroke='%23e7b45a' stroke-width='1.4'/%3E%3Cline x1='2.5' y1='11' x2='27.5' y2='11' stroke='%23f4ede0' stroke-width='1.1'/%3E%3Cline x1='2.5' y1='19' x2='27.5' y2='19' stroke='%23f4ede0' stroke-width='1.1'/%3E%3Cline x1='11' y1='2.5' x2='11' y2='27.5' stroke='%23f4ede0' stroke-width='1.1'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://budgetsheethub.blog/"},{"@type":"ListItem","position":2,"name":"Can You Use \u003c> in SUMIFS?","item":"https://budgetsheethub.blog/can-you-use-in-sumifs/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Can You Use \u003c> in SUMIFS?","description":"Yes, you can use `\u003c>` in SUMIFS, but it means “not equal to,” not “less than or greater than.” Use it to exclude a specific label like Transfer or Paid, and use separate criteria such as `\">=x\"` and `\"\u003cx\"` when you need a range.","datePublished":"2026-11-10T15:45:03.139Z","dateModified":"2026-11-10T15:45:03.139Z","mainEntityOfPage":"https://budgetsheethub.blog/can-you-use-in-sumifs/","author":{"@type":"Organization","name":"Budget Sheet Hub","url":"https://budgetsheethub.blog/"},"publisher":{"@type":"Organization","name":"Budget Sheet Hub","url":"https://budgetsheethub.blog/"}}</script>
+</head>
+<body><header class="site"><div class="wrap">
+<a class="brand" href="/"><svg class="mark" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="25" height="25" rx="3.5" fill="#1f5c3d" stroke="#e7b45a" stroke-width="1.4"/><line x1="2.5" y1="11" x2="27.5" y2="11" stroke="#f4ede0" stroke-width="1.1"/><line x1="2.5" y1="19" x2="27.5" y2="19" stroke="#f4ede0" stroke-width="1.1"/><line x1="11" y1="2.5" x2="11" y2="27.5" stroke="#f4ede0" stroke-width="1.1"/><path d="M13.5 15.4l2.3 2.4 4.4-5" stroke="#e7b45a" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="bt"><b>Budget Sheet Hub</b><span>Budget spreadsheet templates &amp; methods</span></span></a>
+<nav class="site"><a href="/">Home</a><a href="/compare/vertex42-vs-tiller-vs-sheetfolk/">Compare</a><a href="/best/free-budget-spreadsheet-templates-2026/">Best templates</a><a href="/guide/budgeting-method-picker/">Methods</a><a href="/faq/">FAQ</a><a href="/about/">About</a></nav>
+</div></header>
+<div class="crumb wrap"><a href="/">Home</a> / About</div>
+<main class="wrap">
+<div class="crumb"><a href="/">Home</a> / Can You Use &lt;&gt; in SUMIFS?</div>
+<article>
+<h1>Can You Use &lt;&gt; in SUMIFS?</h1>
+<p class="updated">Published 2026-11-10</p>
+<div class="tldr"><p><strong>TL;DR:</strong> Yes, you can use `&lt;&gt;` in SUMIFS, but it means “not equal to,” not “less than or greater than.” Use it to exclude a specific label like Transfer or Paid, and use separate criteria such as `"&gt;=x"` and `"&lt;x"` when you need a range.</p></div>
+<h2>Short answer and why <code>&lt;&gt;</code> is the wrong operator</h2>
+<p>Yes, you can use <code>&lt;&gt;</code> in <code>SUMIFS</code>, but it does <strong>not</strong> mean “less than or greater than.” It means <strong>not equal to</strong>. So <code>&lt;&gt;</code> excludes a specific value rather than testing for two directions at once. Microsoft’s <code>SUMIFS</code> help page shows criteria as text strings in formula arguments: <a href="https://support.microsoft.com/en-us/office/sumsifs-function-c9e748f5-7ea7-455d-9406-611cebce642b">Microsoft Support, SUMIFS function</a>.</p>
+<h2>How SUMIFS handles comparison criteria</h2>
+<p><code>SUMIFS</code> accepts criteria like <code>&quot;&gt;=0&quot;</code>, <code>&quot;&lt;100&quot;</code>, and <code>&quot;&lt;&gt;Paid&quot;</code> when they are written as text in the criteria argument. The comparison operator sits inside quotes, and the formula evaluates rows that match the condition.</p>
+<p>In other words, <code>SUMIFS</code> can filter by:</p>
+<ul>
+<li>numeric thresholds, like <code>&quot;&gt;=0&quot;</code></li>
+<li>upper limits, like <code>&quot;&lt;100&quot;</code></li>
+<li>exclusion rules, like <code>&quot;&lt;&gt;Paid&quot;</code></li>
+</ul>
+<p>That matches the official syntax style described in spreadsheet documentation for <code>SUMIFS</code>.</p>
+<h2>When <code>&lt;&gt;</code> works in a household budget spreadsheet</h2>
+<p>In a household budget, <code>&lt;&gt;</code> is useful when you want to <strong>exclude</strong> a label from the total.</p>
+<p>For example, you might sum expenses that are not:</p>
+<ul>
+<li><code>Transfer</code></li>
+<li><code>Reimbursed</code></li>
+<li><code>Paid</code></li>
+</ul>
+<p>That helps when you are totaling monthly spending and do not want internal transfers or already settled items to affect the result.</p>
+<h2>What to use instead if you mean a range</h2>
+<p>If you want “less than or greater than” logic, <code>&lt;&gt;</code> is not the right tool. It is not a numeric range operator. It only means “not equal to.”</p>
+<p>For range logic, use separate criteria. For example, if you want to sum only values between two limits, pair criteria like <code>&quot;&gt;=0&quot;</code> and <code>&quot;&lt;100&quot;</code> in the same <code>SUMIFS</code> formula.</p>
+<p>That matters in zero-based budgeting, where you may want to sum only the lines that fit a plan. You can set one criterion for the lower bound and another for the upper bound, then let the formula do the filtering.</p>
+<h2>Hypothetical worked example for a zero-based budget</h2>
+<p>Here is a hypothetical example.</p>
+<p>Suppose a household spreadsheet has these transactions:</p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Category</th>
+<th align="right">Amount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1/3</td>
+<td>Groceries</td>
+<td align="right">82</td>
+</tr>
+<tr>
+<td>1/5</td>
+<td>Utilities</td>
+<td align="right">140</td>
+</tr>
+<tr>
+<td>1/7</td>
+<td>Transfer</td>
+<td align="right">200</td>
+</tr>
+<tr>
+<td>1/9</td>
+<td>Groceries</td>
+<td align="right">46</td>
+</tr>
+<tr>
+<td>1/12</td>
+<td>Dining Out</td>
+<td align="right">38</td>
+</tr>
+<tr>
+<td>1/15</td>
+<td>Transfer</td>
+<td align="right">125</td>
+</tr>
+</tbody></table>
+<p>You want total spending for the month, but you want to exclude <code>Transfer</code> entries.</p>
+<p>A <code>SUMIFS</code> formula could look like this:</p>
+<pre><code class="language-excel">=SUMIFS(C2:C7, B2:B7, &quot;&lt;&gt;Transfer&quot;)
+</code></pre>
+<p>Step by step:</p>
+<ul>
+<li><code>C2:C7</code> is the amount range.</li>
+<li><code>B2:B7</code> is the category range.</li>
+<li><code>&quot;&lt;&gt;Transfer&quot;</code> means include rows where the category is not <code>Transfer</code>.</li>
+</ul>
+<p>Now the arithmetic:</p>
+<ul>
+<li>Groceries: 82</li>
+<li>Utilities: 140</li>
+<li>Groceries: 46</li>
+<li>Dining Out: 38</li>
+<li>Transfers excluded: 200 + 125</li>
+</ul>
+<p>Total included amount:</p>
+<p>82 + 140 + 46 + 38 = 306</p>
+<p>So the formula returns <code>306</code>.</p>
+<p>That is exactly how <code>&lt;&gt;</code> behaves. It filters out one label. It does not mean “anything except this, but also somehow a range.”</p>
+<h2>Quick formula patterns to copy</h2>
+<table>
+<thead>
+<tr>
+<th>Criteria pattern</th>
+<th>Meaning</th>
+<th>Useful when</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&quot;&lt;&gt;x&quot;</code></td>
+<td>Not equal to <code>x</code></td>
+<td>Excluding a label like <code>Transfer</code> or <code>Paid</code></td>
+</tr>
+<tr>
+<td><code>&quot;&gt;=x&quot;</code></td>
+<td>At least <code>x</code></td>
+<td>Keeping values at or above a floor</td>
+</tr>
+<tr>
+<td><code>&quot;&lt;x&quot;</code></td>
+<td>Less than <code>x</code></td>
+<td>Keeping values below a limit</td>
+</tr>
+</tbody></table>
+<p>In a budget worksheet, these are handy for clean category totals, limit checks, and excluding noise from the totals.</p>
+<h2>Link back to budget setup</h2>
+<p>This answer fits into the bigger zero-based budgeting workflow, where clean labels and consistent formulas keep your category totals easier to manage. If you are still setting up the whole structure, the related guide on <a href="https://budgetsheethub.blog/cant-wrap-my-head-around-starting-my-zero-based-budget/">starting a zero-based budget in a spreadsheet</a> helps with category setup, and <a href="https://budgetsheethub.blog/how-to-track-monthly-expenses-in-a-spreadsheet/">how to track monthly expenses in a spreadsheet</a> shows how those totals connect to day-to-day tracking.</p>
+
+</article>
+</main>
+<footer class="site"><div class="wrap"><div class="cols"><div><h4>Compare</h4><ul><li><a href="/compare/vertex42-vs-tiller-vs-sheetfolk/">Vertex42 vs Tiller vs sheetfolk</a></li><li><a href="/vs/tiller/">Spreadsheet vs Tiller</a></li><li><a href="/vs/vertex42/">Paid vs Vertex42 (free)</a></li><li><a href="/alternatives/tiller/">Tiller alternatives</a></li><li><a href="/alternatives/vertex42/">Vertex42 alternatives</a></li></ul></div><div><h4>Methods</h4><ul><li><a href="/guide/budgeting-method-picker/">Which method fits you?</a></li><li><a href="/guide/50-30-20-rule/">The 50/30/20 rule</a></li><li><a href="/guide/zero-based-budgeting/">Zero-based budgeting</a></li><li><a href="/guide/plan-vs-actual-budgeting/">Plan vs actual</a></li><li><a href="/guide/spreadsheet-vs-ynab-monarch/">Spreadsheet vs an app</a></li></ul></div><div><h4>Guides</h4><ul><li><a href="/best/free-budget-spreadsheet-templates-2026/">Best free templates 2026</a></li><li><a href="/best/budget-spreadsheets-for-couples-2026/">Best couples spreadsheets</a></li><li><a href="/how-to/build-a-budget-spreadsheet/">Build one from scratch</a></li><li><a href="/glossary/">Glossary</a></li><li><a href="/about/">About &amp; method</a></li></ul></div></div><div class="fine"><p>Budget Sheet Hub is an independent guide to budget spreadsheet templates and the methods behind them. We compare tools honestly and link to primary sources (Vertex42, Tiller, YNAB, NerdWallet and the CFPB). Content is informational only and is not financial advice, verify prices and features on each vendor&rsquo;s own site before buying.</p><p class="footer-disc">Disclosure: this site features commercial partners and promoted placements, which can influence which products appear and how they are ranked. Comparisons reflect our own research and opinion. Verify current pricing and features on each provider&rsquo;s site before buying.</p><p>&copy; 2026 Budget Sheet Hub. Updated August 2026.</p></div></div></footer>
+</body></html>
